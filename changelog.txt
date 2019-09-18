@@ -1,8 +1,0 @@
-#Changes David made
-
-
-- ADDED LOGO
-- Fixed multiple selection strings
-- added tput color styles 
-- added randtype typing animations to "Daily Specials"
-
