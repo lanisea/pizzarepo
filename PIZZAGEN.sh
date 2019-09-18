@@ -91,7 +91,7 @@ PS3="What size Pizza do you want? "
 		break;;
 	      *)
 		echo "------------"
-		echo "Please choose an option from the list!"
+		echo "Please select a number from the list!"
 		echo "------------"
 
 esac
@@ -129,7 +129,7 @@ PS3="Please select the type of pizza: "
 
         	*) 
 		echo "------------"
-		echo "Please choose an option from the list!"
+		echo "Please select a number from the list!"
 		echo "------------"
 
 	esac
