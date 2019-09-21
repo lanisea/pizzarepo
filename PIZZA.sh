@@ -20,7 +20,9 @@ printf "\nHere are the daily specials!\n" | randtype -t 0,10000
 printf "\nChoose any 2 or more for 10.99 each!\n" | randtype -t 0,10000 
 printf "\nAll pizzas, 3 toppings for 7.99!\n" | randtype -t 0,10000
 else 
-   echo "See you again!"
+printf "\n\nSee you again!"
+sleep 2s
+clear
 fi
 #------------Pizza Select
 
