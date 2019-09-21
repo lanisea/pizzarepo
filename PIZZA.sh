@@ -25,7 +25,9 @@ sleep 2s
 clear
 fi
 #------------Pizza Select
-
+tput setaf 1
+echo "==============================="
+read -p "To start off, how many pizzas are you getting today? " numofpizza
 
 
 
