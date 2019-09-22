@@ -59,32 +59,32 @@ tput setaf 1
 
 printf "\n\n===============================\n\n"
 
-read -p "To start off, how many pizzas are you getting today? " numofpizza2
+read -p "To start off, how many pizzas are you getting today? " n2
  
 #-------------Loop for amount of pizzas
 
-for x in $(seq $numofpizza2)
+for x in $(seq $n2)
 do 
   echo " "
   echo "*****************Pizza # $x*********************"
-  read -p "What size would you like your Pizza to be? " size3
-    sizeArray[$x]=$size3
+  read -p "What size would you like your Pizza to be? " s3
+    sizeArray[$x]=$s3
 sleep 1
 
 #-------------Style of pizza  
 
-  read -p "Which Specialty Pizza would you like? " specialty4
-     specialtyArray[$x]=$specialty4
+  read -p "Which Specialty Pizza would you like? " s4
+     specialtyArray[$x]=$s4
 sleep 1
 
 #----------------Additional Toppings
 
-   read -p "Would you like to add any additional toppings? " answer5
+   read -p "Would you like to add any additional toppings? " a5
  
-       if [ "$answer5" = "yes" ] || [ "$answer5" = "Yes" ] || [ "$answer5" = "y" ]
+       if [ "$a5" = "yes" ] || [ "$a5" = "Yes" ] || [ "$a5" = "y" ]
           then
-            read -p "List your toppings " topping7
-                  toppingArray[$x]=$topping7
+            read -p "List your toppings " t7
+                  toppingArray[$x]=$t7
           elif [ "$answer5" = "*" ]
             then 
              break 
@@ -98,9 +98,9 @@ sleep 1
 
 #-------------Listing Order
 
-for x in ${!numofpizza2[*]}
+for x in ${!sizeArray[*]}
 do 
- printf "\nPizza #$((x+1)): "
+ printf "\nPizza #$x: "
 printf "\nSize:${sizeArray[$x]}\nSpecialty:${specialtyArray[$x]}\nToppings:${toppingArray[$x]}\n\n" 
 done
 
