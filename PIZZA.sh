@@ -20,13 +20,9 @@ tput setaf 3
 	printf "\nHere are the daily specials!\n" | randtype -t 0,10000
 	printf "\nChoose any 2 or more for 10.99 each!\n" | randtype -t 0,10000 
 	printf "\nAll pizzas, 3 toppings for 7.99!\n" | randtype -t 0,10000
-else 
-	printf "\n\nSee you again!"
-sleep 2s
-clear
-fi
+
 #------------Pizza Options
- printf "\n\nHere are our menu options!\n"
+printf "\n\nHere are our menu options!\n"
 printf "\nSize options:\n"
 printf "\n1.) Extra-Large (20 inches)-18.99"
 printf "\n2.) Large (16 inches)-15.99"
@@ -36,7 +32,7 @@ printf "\n5.) Individual portion (8 inches)-8.99\n"
 #------------Styles
 printf "\nSpecialty Pizzas:\n"
 printf "\nA.) Pepperoni"
-printf "\nB.) Cheese"
+printf "\nB.) 5 Cheeses"
 printf "\nC.) Hawaiian"
 printf "\nD.) Vegan Veggie Lovers"
 printf "\nE.) Meat Lovers"
@@ -58,15 +54,60 @@ printf "\n- Pineapple"
 
 
  
-sleep 1s
+sleep 1
 tput setaf 1
 
 printf "\n\n===============================\n\n"
 
 read -p "To start off, how many pizzas are you getting today? " numofpizza2
  
+#-------------Loop for amount of pizzas
 
+for x in $(seq $numofpizza2)
+do 
+  echo " "
+  echo "*****************Pizza # $x*********************"
+  read -p "What size would you like your Pizza to be? " size3
+    sizeArray[$x]=$size3
+sleep 1
 
+#-------------Style of pizza  
 
+  read -p "Which Specialty Pizza would you like? " specialty4
+     specialtyArray[$x]=$specialty4
+sleep 1
 
+#----------------Additional Toppings
 
+   read -p "Would you like to add any additional toppings? " answer5
+ 
+       if [ "$answer5" = "yes" ] || [ "$answer5" = "Yes" ] || [ "$answer5" = "y" ]
+          then
+            read -p "List your toppings " topping7
+                  toppingArray[$x]=$topping7
+          elif [ "$answer5" = "*" ]
+            then 
+             break 
+               else   
+        printf "\n\n~~~~~~~~~~~~~~~~~~~~~~Alright lets continue!~~~~~~~~~~~~~~~~~~~~~~~\n\n"
+
+        fi
+done
+
+sleep 1
+
+#-------------Listing Order
+
+for x in ${!numofpizza2[*]}
+do 
+ printf "\nPizza #$((x+1)): "
+printf "\nSize:${sizeArray[$x]}\nSpecialty:${specialtyArray[$x]}\nToppings:${toppingArray[$x]}\n\n" 
+done
+
+else  
+        printf "\n\nSee you again!"
+sleep 2
+clear
+fi
+
+ 
