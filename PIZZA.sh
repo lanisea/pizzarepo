@@ -13,44 +13,46 @@ tput bold
 tput setaf 1
 read -p "Hello, welcome to Generation Pizza! Would you like to start your order? " answer1
 
-if [ "$answer1" = "yes" ] || [ "$answer1" = "Yes" ] || [ "$answer1" = "y" ]
+if [ "$answer1" = "yes" ] || [ "$answer1" = "Yes" ] || [ "$answer1" = "y" ] || [ "$answer1" = "Y" ]
 then 
 tput bold
 tput setaf 3
 	printf "\nHere are the daily specials!\n" | randtype -t 0,10000
 	printf "\nChoose any 2 or more for 10.99 each!\n" | randtype -t 0,10000 
 	printf "\nAll pizzas, 3 toppings for 7.99!\n" | randtype -t 0,10000
-
+sleep 1s
 #------------Pizza Options
-printf "\n\nHere are our menu options!\n"
-printf "\nSize options:\n"
-printf "\n1.) Extra-Large (20 inches)-18.99"
-printf "\n2.) Large (16 inches)-15.99"
-printf "\n3.) Medium (13 inches)-13.99"
-printf "\n4.) Small (10 inches)-10.99"
-printf "\n5.) Individual portion (8 inches)-8.99\n"
+printf "\n\nHere are our menu options!\n" | randtype -t 0,10000
+printf "\nSize options:\n" | randtype -t 0,10000
+printf "\n1.) Extra-Large (20 inches)-18.99"| randtype -t 0,10000
+printf "\n2.) Large (16 inches)-15.99" | randtype -t 0,10000
+printf "\n3.) Medium (13 inches)-13.99" | randtype -t 0,10000
+printf "\n4.) Small (10 inches)-10.99" | randtype -t 0,10000
+printf "\n5.) Individual portion (8 inches)-8.99\n" | randtype -t 0,10000
+sleep 1s
 #------------Styles
-printf "\nSpecialty Pizzas:\n"
-printf "\n- Pepperoni"
-printf "\n- 5 Cheeses"
-printf "\n- Hawaiian"
-printf "\n- Vegan Veggie Lovers"
-printf "\n- Meat Lovers"
-printf "\n- Philly Cheese"
-printf "\n- Buffalo Chicken\n"
+printf "\nSpecialty Pizzas:\n" | randtype -t 0,10000
+printf "\n- Pepperoni" | randtype -t 0,10000
+printf "\n- 5 Cheeses" | randtype -t 0,10000
+printf "\n- Hawaiian" | randtype -t 0,10000
+printf "\n- Vegan Veggie Lovers" | randtype -t 0,10000
+printf "\n- Meat Lovers"| randtype -t 0,10000
+printf "\n- Philly Cheese" | randtype -t 0,10000
+printf "\n- Buffalo Chicken\n" | randtype -t 0,10000
+sleep 1s
 #--------------Additional Toppings
-printf "\nAdditional Toppings 1.50 extra/each:\n"
-printf "\n- Ham"
-printf "\n- Vegan Beef"
-printf "\n- Chicken"
-printf "\n- Mushrooms"
-printf "\n- Jalapenos Peppers"
-printf "\n- Black Olives"
-printf "\n- Green Peppers"
-printf "\n- Sun Dried Tomatoes"
-printf "\n- Onions"
-printf "\n- Pineapple"
-
+printf "\nAdditional Toppings 1.50 extra/each:\n" | randtype -t 0,10000
+printf "\n- Ham"| randtype -t 0,10000
+printf "\n- Vegan Beef" | randtype -t 0,10000
+printf "\n- Chicken" | randtype -t 0,10000
+printf "\n- Mushrooms" | randtype -t 0,10000
+printf "\n- Jalapenos Peppers" | randtype -t 0,10000
+printf "\n- Black Olives"| randtype -t 0,10000
+printf "\n- Green Peppers" | randtype -t 0,10000
+printf "\n- Sun Dried Tomatoes" | randtype -t 0,10000
+printf "\n- Onions" | randtype -t 0,10000
+printf "\n- Pineapple" | randtype -t 0,10000
+sleep 1s
 
 
  

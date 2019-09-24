@@ -5,39 +5,40 @@ clear
 tput setaf 6
 tput setab 1
 tput bold
-cat LOGO.txt | randtype -l
+cat LOGO.txt 
 sleep 1s
 tput sgr0
-
+#-----SUM TOTAL CALC
+TOTAL=()
 #------ARRAYS
 topArray=("Pepperoni" "Ham" "Pineapples" "Red Peppers" "Green Peppers" "Olives" "Sausage" "Meatballs")
 pizzaArray=("Cheese" "Pepperoni" "Hawaiian" "Veggie" "Vegan" "MeatLovers")
 sizeArray=("Extra Large" "Large" "Medium" "Small")
-
+pizzaCount=0
 #---------Greeting
 tput setaf 2
 tput bold
-printf "\n\nWelcome to PIZZA GENERATION!\n" | randtype -t 0,100000
+printf "\n\nWelcome to PIZZA GENERATION!\n" 
 tput sgr0
 sleep 2s
 #------------------------------=======----------PIZZA MENU
 tput setaf 3
 tput bold
-printf "\nOur signature pizzas:\n" | randtype -t 0,10000
+printf "\nOur signature pizzas:\n" 
 for p in ${!pizzaArray[*]}
 do
-printf "$(($p +1)). ${pizzaArray[$p]}\n" | randtype -l
+printf "$(($p +1)). ${pizzaArray[$p]}\n" 
 done
 
 
-printf '\nChoose your own toppings! $1 each!\n' | randtype -t 0,10000
+printf '\nChoose your own toppings! $1 each!\n' 
 for s in ${!topArray[*]}
 do
-printf "$(($s +1)). ${topArray[$s]}\n" | randtype -l
+printf "$(($s +1)). ${topArray[$s]}\n" 
 done
 #=================================================Starting off
 tput setaf 3
-printf "\n\n===============================\n\n" | randtype -l
+printf "\n\n===============================\n\n" 
 
 read -p "Would you like to place an order? " n2
 
@@ -45,7 +46,7 @@ if [ $n2 = "yes" ] || [ $n2 = "Yes" ] || [ $n2 = "Y" ] || [ $n2 = "y" ]
 then
 tput bold
 tput setaf 3 
-printf "\n\nLet's start!\n" | randtype -l
+printf "\n\nLet's start!\n" 
 sleep 1s
 else
 tput setaf 1
@@ -58,25 +59,18 @@ fi
 tput sgr0
 tput bold
 tput setaf 6
-#==========================SELECTION
-echo "Our size pizzas:"
-PS3="Please select your size:  "
-select size in "${sizeArray[@]}" 
+
+
+#=============================================================FUNCTIONS
+function SIZE
+{
+select size in ${
+#==============================================================SELECTION
+read -p "How many Pizzas do you want? " pizzaCount
+
+for s in $(seq $pizzaCount)
 do
-	case $size in
-	"Extra Large")
-		printf '\nExtra Large is $15.99\n'
-		break;;
-	"Large")
-		printf '\nLarge is $13.99\n'
-		break;;
-	"Medium")
-		printf '\nMedium is $10.99\n'
-		break;;
-	"Small")
-		printf '\nSmall is $8.99\n'
-		break;;
-	*) printf "Sorry, what was that again?\n "
-esac
-done
+SIZE
+
+
 
