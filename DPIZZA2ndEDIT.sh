@@ -13,8 +13,7 @@ tput sgr0
 pizzaArray=("Cheese" "Pepperoni" "Hawaiian" "Veggie" "Vegan" "MeatLovers")
 sizeArray=("Extra Large" "Large" "Medium" "Small")
 priceArray=('$15.99' '$13.99' '$10.99' '$8.99')
-tPizzaArray=$($PS3)
-tSizeArray=()
+tPizzaArray=()
 #---------Greeting
 tput setaf 2
 tput bold
@@ -53,7 +52,7 @@ then
 echo "Say that again? "
 fi
 tput bold
-tput setaf 3
+tput setaf 2
 #===============================================Loop for amount of pizzas
 while [[ $n2 = "y" ]] || [[ $answer = "y" ]] 
 do
@@ -64,12 +63,16 @@ PS3="What size Pizza do you want? "
 
 	case $size in
 	"Extra Large")
+		tPizzaArray+=('Extra Large')
 		break;;
 	"Large")
+		tPizzaArray+=('Large')
 		break;;
 	"Medium")
+		tPizzaArray+=('Medium')
 		break;;
 	"Small")
+		tPizzaArray+=('Small')
 		break;;
 	      *)
 		printf "\nSorry, what was that again?\n"
@@ -81,16 +84,22 @@ PS3="Please select the type of pizza: "
          do
         case $style in
         "Cheese")
+		tSizeArray+=('Cheese')
                 break;;
         "Pepperoni")
+		tSizeArray+=('Pepperoni')
                 break;;
         "Hawaiian")
+		tSizeArray+=('Hawaiian')
                 break;;
         "Veggie")
+		tSizeArray+=('Veggie')
                 break;;
         "Vegan")
+		tSizeArray+=('Vegan')
                 break;;
 	"MeatLovers")
+		tSizeArray+=('MeatLovers')
 		break;;
 
         	*) 
@@ -113,5 +122,5 @@ tput bold
 printf "==================\nOrder\n==================\n"
 for s in ${!tPizzaArray[*]}
 do
-printf "$(($s+1)). ${size[$s]} - ${style[$s]}\n"
+printf "$(($s+1)). ${tPizzaArray[$s]} - ${tSizeArray[$s]}\n"
 done
