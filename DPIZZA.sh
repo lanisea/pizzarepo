@@ -13,9 +13,8 @@ tput sgr0
 pizzaArray=("Cheese" "Pepperoni" "Hawaiian" "Veggie" "Vegan" "MeatLovers")
 sizeArray=("Extra Large" "Large" "Medium" "Small")
 priceArray=('$15.99' '$13.99' '$10.99' '$8.99')
-tPizzaArray=(*)
+tPizzaArray=()
 tSizeArray=()
-counter=0
 #---------Greeting
 tput setaf 2
 tput bold
@@ -42,39 +41,16 @@ printf "\n\n===============================\n\n" | randtype -l
 
 read -p "Would you like to place an order? " n2
 
-if [ $n2 = "yes" ] || [ $n2 = "Yes" ] || [ $n2 = "Y" ] || [ $n2 = "y" ]
-then
-tput bold
-tput setaf 3 
-printf "\n\nLet's start!\n" 
-sleep 1s
-else
-tput setaf 1
-tput bold
-printf "\nSee you around!\n"
-sleep 2s
-reset
-exit;
-fi
-tput sgr0
-tput bold
-tput setaf 6
-#==========================SELECTION
-sleep 1
-tput setaf 1
-
 printf "\n\n===============================\n\n"
 
-
 #-------------Loop for amount of pizzas
-read -p "How many pizzas are you getting today? " n3
-
-for x in $(seq $n3)
+while [[ $n2 = "y" ]] || [[ $answer = "y" ]]
 do
  printf "\nChoose your size:\n"
 PS3="Please select your size:  "
-  select size in "${sizeArray[@]}" 
+  select size in "${sizeArray[@]}"
    do
+
 	case $size in
 	"Extra Large")
 		break;;
@@ -85,12 +61,11 @@ PS3="Please select your size:  "
 	"Small")
 		break;;
 		*)
-		printf "Sorry, what was that again?\n\n "
-        userSize[$x]=$PS3
-       esac
+	esac
 done
+printf "Sorry, what was that again?\n\n"
 printf "\nChoose your style:\n"
-PS2="Please select the type of pizza:"
+PS3="Please select the type of pizza:"
      select style in "${pizzaArray[@]}"
          do
         case $style in
@@ -107,11 +82,20 @@ PS2="Please select the type of pizza:"
         "Meat Lovers")
                 break;;
         	'*') printf "Sorry, what was that again?\n"
-     userStyle[$x]=$PS2          
-esac
 
+	esac
 done
+
+read -p "Do you want another pizza? (y/n) " answer
+
+if [[ $answer = "n" ]] || [[ $n2 = "n" ]]
+then
+break
+elif
+printf "\nPlease select y/n\n"
+fi
 done
+
 
 
 #==================SUMMARY
