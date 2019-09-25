@@ -42,17 +42,26 @@ tput setaf 3
 printf "\n\n===============================\n\n" | randtype -l
 read -p "Would you like to place an order? " n2
 printf "\n===============================\n\n"
-if [[ $n2 = "y" ]]
-then
-echo "Let's get started!"
-sleep 1s
-elif [[ $n2 = "n" ]]
-then
-echo "So...why are you here?"
-exit
-else
-printf "Please only type (y/n)\n"
-fi
+#if [[ $n2 = "y" ]]
+#then
+#echo "Let's get started!"
+#sleep 1s
+#elif [[ $n2 = "n" ]]
+#then
+#echo "So...why are you here?"
+#elif [[ $n2 = * ]]
+#then
+ #printf "Please only type (y/n)\n" 
+#printf "Please only type (y/n)\n"
+#fi
+#=====================================Case Start
+case $n2 in
+	[yY]*)
+	;;
+	[nN]*)
+	echo "See you again!";;
+		
+esac
 tput bold
 tput setaf 2
 #===============================================Loop for amount of pizzas
@@ -111,7 +120,7 @@ PS3="Please select the type of pizza: "
                 break;;
 	"MeatLovers")
 		price+="3 "
-		tSizeArray+=('MeatLovers')
+ 		tSizeArray+=('MeatLovers')
 		break;;
 
         	*) 
@@ -131,15 +140,25 @@ done
 #==================SUMMARY
 tput setaf 7
 tput bold
-printf "==================\nOrder\n==================\n"
+printf "=======================\nOrder\n=======================\n"
 for s in ${!tPizzaArray[*]}
 do
 printf "$(($s+1)). ${tPizzaArray[$s]} - ${tSizeArray[$s]}\n"
 done
-printf "===============\nTOTAL\n=================\n"
+printf "=======================\nTOTAL\n=======================\n"
 for n in ${price[@]}
 do
  (( total += n ))
 done
-echo "Your total is" '$'"$total"'.00'
-echo ""
+function tax
+{
+T=.07
+TAX=$( echo "$total*$T"|bc)
+COMPLETE=$(echo "$total+$TAX"|bc)
+   echo "---------Total: $"$COMPLETE""
+}
+
+
+echo "Your subtotal is" '$'"$total"
+echo "-------------Tax: %7"
+tax 
