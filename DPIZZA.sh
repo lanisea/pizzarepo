@@ -10,10 +10,11 @@ sleep 1s
 tput sgr0
 
 #------ARRAYS
-topArray=("Pepperoni" "Ham" "Pineapples" "Red Peppers" "Green Peppers" "Olives" "Sausage" "Meatballs")
 pizzaArray=("Cheese" "Pepperoni" "Hawaiian" "Veggie" "Vegan" "MeatLovers")
 sizeArray=("Extra Large" "Large" "Medium" "Small")
 priceArray=('$15.99' '$13.99' '$10.99' '$8.99')
+tPizzaArray=$($PS3)
+counter=0
 #---------Greeting
 tput setaf 2
 tput bold
@@ -34,11 +35,6 @@ do
 printf "$(($p +1)). ${pizzaArray[$p]}\n" | randtype -t 0,1000
 done
 
-printf '\nChoose your own toppings! $1 each!\n' | randtype -t 0,1000
-for s in ${!topArray[*]}
-do
-printf "$(($s +1)). ${topArray[$s]}\n" | randtype -t 0,1000
-done
 #=================================================Starting off
 tput setaf 3
 printf "\n\n===============================\n\n" | randtype -l
@@ -68,15 +64,23 @@ tput setaf 1
 
 printf "\n\n===============================\n\n"
 
-read -p "How many pizzas are you getting today? " n3
 
 #-------------Loop for amount of pizzas
+read -p "How many pizzas are you getting today? " n3
+
 for x in $(seq $n3)
 do
+<<<<<<< HEAD
     printf "\nChoose your size:\n"
     PS3="Please select your size:  "
      select size in "${sizeArray[@]}" 
         do
+=======
+ printf "\nChoose your size:\n"
+PS3="Please select your size:  "
+  select size in "${sizeArray[@]}" 
+   do
+>>>>>>> 76695d3fe2856ab497a2c352fbe8fda06ffc5335
 	case $size in
 	"Extra Large")
 		break;;
@@ -86,6 +90,7 @@ do
 		break;;
 	"Small")
 		break;;
+<<<<<<< HEAD
 	*)printf "Sorry, what was that again?\n\n "
          esac
           done
@@ -93,6 +98,15 @@ do
      printf "\nChoose your style:\n"
      PS3="Please select the type of pizza: "
        select style  in "${pizzaArray[@]}"
+=======
+		*)
+		printf "Sorry, what was that again?\n\n "
+       esac
+done
+printf "\nChoose your style:\n"
+PS3="Please select the type of pizza:"
+     select style in "${pizzaArray[@]}"
+>>>>>>> 76695d3fe2856ab497a2c352fbe8fda06ffc5335
          do
         case $style in
         "Cheese")
@@ -107,6 +121,7 @@ do
                 break;;
         "Meat Lovers")
                 break;;
+<<<<<<< HEAD
         *) printf "Sorry, what was that again?\n"
           esac
           done
@@ -136,17 +151,28 @@ do
           esac
           done
 
+=======
+        	'*') printf "Sorry, what was that again?\n"
+esac
+
 done
+>>>>>>> 76695d3fe2856ab497a2c352fbe8fda06ffc5335
+done
+
 
 #==================SUMMARY
 tput setaf 7
 tput bold
 printf "==================\nOrder\n==================\n"
-for s in ${!sizeArray[*]}
+for s in ${!tPizzaArray[*]}
 do
+<<<<<<< HEAD
 printf "\nPizza #$s: "
 printf "\nA ${sizeArray[$s]} ${pizzaArray[$s]} with ${topArray[$s]}\n"
 #printf "$(($s+1)). ${style[$s]} - ${size[$s]}\n"
+=======
+printf "$(($s+1)). ${size[$s]} - ${style[$s]}\n"
+>>>>>>> 76695d3fe2856ab497a2c352fbe8fda06ffc5335
 done
 
 printf "=================\nHave a good day!\n=================\n"
