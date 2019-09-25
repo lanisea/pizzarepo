@@ -40,59 +40,60 @@ done
 #=================================================Starting off
 tput setaf 3
 printf "\n\n===============================\n\n" | randtype -l
-read -p "Would you like to place an order? " n2
-printf "\n===============================\n\n"
-#if [[ $n2 = "y" ]]
-#then
-#echo "Let's get started!"
-#sleep 1s
-#elif [[ $n2 = "n" ]]
-#then
-#echo "So...why are you here?"
-#elif [[ $n2 = * ]]
-#then
- #printf "Please only type (y/n)\n" 
-#printf "Please only type (y/n)\n"
-#fi
-#=====================================Case Start
-case $n2 in
-	[yY]*)
-	;;
-	[nN]*)
-	echo "See you again!";;
-		
+
+function yesno
+{
+ read -p "Would you like to place an order? " ntwo
+    case $ntwo in
+        [nN]*)
+       echo "See you again!"
+       exit;;
+      [abcdefghijklmopqrstuvwxzABCDEFGHIJKLMOPQRSTUVWXZ1234567890]*)
+      echo "Please enter y or n!"
+yesno;;
+[Yy]*)
 esac
+}
+
+yesno
+
 tput bold
 tput setaf 2
-#===============================================Loop for amount of pizzas
-while [[ $n2 = "y" ]] || [[ $answer = "y" ]] 
+
+
+printf "\n===============================\n\n"
+
+#=====================================Case Start
+   
+while [[ $ntwo = "y" ]] || [[ $ntwo = "Y" ]] 
 do
  printf "\nChoose your size:\n"
 PS3="What size Pizza do you want? "
   select size in "${sizeArray[@]}" #select is a loop for options
    do					#case is used to run a command based on pattern matching
-
-	case $size in
-	"Extra Large")
+       case $size in
+        "Extra Large")
 		price+="15 "
 		tPizzaArray+=('Extra Large')
 		break;;
-	"Large")
+	   "Large")
 		price+="13 "
 		tPizzaArray+=('Large')
 		break;;
-	"Medium")
+	   "Medium")
 		price+="10 "
 		tPizzaArray+=('Medium')
 		break;;
-	"Small")
+	    "Small")
 		price+="9 "
 		tPizzaArray+=('Small')
 		break;;
 	      *)
 		printf "\nSorry, what was that again?\n"
-	esac
+
+esac
 done
+
 printf "\nChoose your style:\n"
 PS3="Please select the type of pizza: "
      select style in "${pizzaArray[@]}"
@@ -129,18 +130,32 @@ PS3="Please select the type of pizza: "
 	esac
 done
 printf "\n "
-read -p "Do you want another pizza? (y/n) " answer
+#=================================Another pizza
 
-if [[ $answer = "n" ]] || [[ $n2 = "n" ]]  
-then
-break
-fi
+function anotherp
+{
+read -p "Do you want another pizza? (y/n) " nthree
+case $nthree in 
+   [nN]*)
+   echo "Lets continue to your order summary!"
+ntwo="n";;
+
+[abcdefghijklmopqrstuvwxzABCDEFGHIJKLMOPQRSTUVWXZ1234567890]*)
+      echo "Please enter y or n!"
+anotherp;;
+[yY]*)
+esac
+}
+
+
+anotherp
+#tput bold
+#tput setaf 2
 done
-
 #==================SUMMARY
 tput setaf 7
 tput bold
-printf "=======================\nOrder\n=======================\n"
+printf "=======================\nOrder Summary\n=======================\n"
 for s in ${!tPizzaArray[*]}
 do
 printf "$(($s+1)). ${tPizzaArray[$s]} - ${tSizeArray[$s]}\n"
