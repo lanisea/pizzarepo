@@ -12,8 +12,11 @@ tput sgr0
 #------ARRAYS
 pizzaArray=("Cheese" "Pepperoni" "Hawaiian" "Veggie" "Vegan" "MeatLovers")
 sizeArray=("Extra Large" "Large" "Medium" "Small")
-priceArray=('$15.99' '$13.99' '$10.99' '$8.99')
+psizeArray=('$15' '$13' '$10' '$8')
+pPizzaArray=('$1' '$2' '$3' '$5' '$5' '$3')
 tPizzaArray=()
+total=0
+price=()
 #---------Greeting
 tput setaf 2
 tput bold
@@ -26,12 +29,12 @@ tput bold
 printf "\nOur pizza sizes:\n" | randtype -t 0,1000
 for p in ${!sizeArray[*]}
 do
-printf "$(($p +1)). ${sizeArray[$p]}-${priceArray[$p]}\n" | randtype -t 0,1000
+printf "$(($p +1)). ${sizeArray[$p]}-${psizeArray[$p]}\n" | randtype -t 0,1000
 done
 printf "\nOur signature pizzas:\n" | randtype -t 0,1000
 for p in ${!pizzaArray[*]}
 do
-printf "$(($p +1)). ${pizzaArray[$p]}\n" | randtype -t 0,1000
+printf "$(($p +1)). ${pizzaArray[$p]} - ${pPizzaArray[$p]}\n" | randtype -t 0,1000
 done
 
 #=================================================Starting off
@@ -47,9 +50,8 @@ elif [[ $n2 = "n" ]]
 then
 echo "So...why are you here?"
 exit
-elif [[ $n2 = "*" ]]
-then
-echo "Say that again? "
+else
+printf "Please only type (y/n)\n"
 fi
 tput bold
 tput setaf 2
@@ -63,15 +65,19 @@ PS3="What size Pizza do you want? "
 
 	case $size in
 	"Extra Large")
+		price+="15 "
 		tPizzaArray+=('Extra Large')
 		break;;
 	"Large")
+		price+="13 "
 		tPizzaArray+=('Large')
 		break;;
 	"Medium")
+		price+="10 "
 		tPizzaArray+=('Medium')
 		break;;
 	"Small")
+		price+="9 "
 		tPizzaArray+=('Small')
 		break;;
 	      *)
@@ -84,21 +90,27 @@ PS3="Please select the type of pizza: "
          do
         case $style in
         "Cheese")
+		price+="1 "
 		tSizeArray+=('Cheese')
                 break;;
         "Pepperoni")
+		price+="2 "
 		tSizeArray+=('Pepperoni')
                 break;;
         "Hawaiian")
+		price="3 "
 		tSizeArray+=('Hawaiian')
                 break;;
         "Veggie")
+		price+="5 "
 		tSizeArray+=('Veggie')
                 break;;
         "Vegan")
+		price+="5 "
 		tSizeArray+=('Vegan')
                 break;;
 	"MeatLovers")
+		price+="3 "
 		tSizeArray+=('MeatLovers')
 		break;;
 
@@ -124,3 +136,10 @@ for s in ${!tPizzaArray[*]}
 do
 printf "$(($s+1)). ${tPizzaArray[$s]} - ${tSizeArray[$s]}\n"
 done
+printf "===============\nTOTAL\n=================\n"
+for n in ${price[@]}
+do
+ (( total += n ))
+done
+echo "Your total is" '$'"$total"'.00'
+echo ""
