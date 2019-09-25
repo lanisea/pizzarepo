@@ -13,8 +13,7 @@ tput sgr0
 pizzaArray=("Cheese" "Pepperoni" "Hawaiian" "Veggie" "Vegan" "MeatLovers")
 sizeArray=("Extra Large" "Large" "Medium" "Small")
 priceArray=('$15.99' '$13.99' '$10.99' '$8.99')
-tPizzaArray=(*)
-tSizeArray=()
+tPizzaArray=$($PS3)
 counter=0
 #---------Greeting
 tput setaf 2
@@ -86,11 +85,10 @@ PS3="Please select your size:  "
 		break;;
 		*)
 		printf "Sorry, what was that again?\n\n "
-        userSize[$x]=$PS3
        esac
 done
 printf "\nChoose your style:\n"
-PS2="Please select the type of pizza:"
+PS3="Please select the type of pizza:"
      select style in "${pizzaArray[@]}"
          do
         case $style in
@@ -107,7 +105,6 @@ PS2="Please select the type of pizza:"
         "Meat Lovers")
                 break;;
         	'*') printf "Sorry, what was that again?\n"
-     userStyle[$x]=$PS2          
 esac
 
 done
@@ -118,9 +115,9 @@ done
 tput setaf 7
 tput bold
 printf "==================\nOrder\n==================\n"
-for s in ${!userSize[*]}
+for s in ${!tPizzaArray[*]}
 do
-printf "$(($s+1)). ${userSize[$s]} - ${userStyle[$s]}\n"
+printf "$(($s+1)). ${size[$s]} - ${style[$s]}\n"
 done
 printf "=================\nHave a good day!\n=================\n"
 
