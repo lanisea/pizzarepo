@@ -73,10 +73,10 @@ read -p "How many pizzas are you getting today? " n3
 #-------------Loop for amount of pizzas
 for x in $(seq $n3)
 do
- printf "\nChoose your size:\n"
- PS3="Please select your size:  "
-  select size in "${sizeArray[@]}" 
-   do
+    printf "\nChoose your size:\n"
+    PS3="Please select your size:  "
+     select size in "${sizeArray[@]}" 
+        do
 	case $size in
 	"Extra Large")
 		break;;
@@ -86,13 +86,13 @@ do
 		break;;
 	"Small")
 		break;;
-		*)
-		printf "Sorry, what was that again?\n\n "
-       esac
-done
-printf "\nChoose your style:\n"
-PS3="Please select the type of pizza: "
-     select style  in "${pizzaArray[@]}"
+	*)printf "Sorry, what was that again?\n\n "
+         esac
+          done
+
+     printf "\nChoose your style:\n"
+     PS3="Please select the type of pizza: "
+       select style  in "${pizzaArray[@]}"
          do
         case $style in
         "Cheese")
@@ -109,7 +109,33 @@ PS3="Please select the type of pizza: "
                 break;;
         *) printf "Sorry, what was that again?\n"
           esac
-done
+          done
+
+    printf "\nChoose your toppings:\n"
+       PS3="Please select your toppings: "
+       select top  in "${topArray[@]}"
+         do
+        case $top in
+        "Pepperoni")
+                break;;
+        "Ham")
+                break;;
+        "Pineapples")
+                break;;
+        "Red Peppers")
+                break;;
+        "Green Peppers")
+                break;;
+        "Olives")
+                break;;
+        "Sausage")
+                break;;
+        "Meatballs")
+                break;;
+         *) printf "Sorry, what was that again?\n"
+          esac
+          done
+
 done
 
 #==================SUMMARY
@@ -118,7 +144,10 @@ tput bold
 printf "==================\nOrder\n==================\n"
 for s in ${!sizeArray[*]}
 do
-printf "$(($s+1)). ${style[$s]} - ${size[$s]}\n"
+printf "\nPizza #$s: "
+printf "\nA ${sizeArray[$s]} ${pizzaArray[$s]} with ${topArray[$s]}\n"
+#printf "$(($s+1)). ${style[$s]} - ${size[$s]}\n"
 done
+
 printf "=================\nHave a good day!\n=================\n"
 
