@@ -38,12 +38,14 @@ printf "$(($p +1)). ${pizzaArray[$p]}-${pPizzaArray[$p]}\n" | randtype -t 0,1000
 done
 
 #=================================================Starting off
-tput setaf 3
-printf "\n\n===============================\n\n" | randtype -l
+tput setaf 6
 
-function yesno
+function yesno #------Function for placing order 
 {
+printf "\n===============================\n"
  read -p "Would you like to place an order? " ntwo
+printf "===============================\n"
+
     case $ntwo in
 	[yY]*)
        	;;
@@ -55,14 +57,12 @@ function yesno
 yesno;;
 esac
 }
-
 yesno
 
 tput bold
-tput setaf 2
+tput setaf 1
 
 
-printf "\n===============================\n\n"
 
 #======================================Select Case Loop for choosing options
    
