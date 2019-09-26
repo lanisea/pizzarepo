@@ -34,7 +34,7 @@ done
 printf "\nOur signature pizzas:\n" | randtype -t 0,1000
 for p in ${!pizzaArray[*]}
 do
-printf "$(($p +1)). ${pizzaArray[$p]} - ${pPizzaArray[$p]}\n" | randtype -t 0,1000
+printf "$(($p +1)). ${pizzaArray[$p]}-${pPizzaArray[$p]}\n" | randtype -t 0,1000
 done
 
 #=================================================Starting off
@@ -108,7 +108,7 @@ PS3="Please select the type of pizza: "
 		tSizeArray+=('Pepperoni')
                 break;;
         "Hawaiian")
-		price="3 "
+		price+="3 "
 		tSizeArray+=('Hawaiian')
                 break;;
         "Veggie")
