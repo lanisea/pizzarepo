@@ -5,7 +5,7 @@ clear
 tput setaf 6
 tput setab 1
 tput bold
-cat LOGO.txt | randtype -l
+cat LOGO.txt | randtype -t 0,1000
 sleep 1s
 tput sgr0
 
@@ -17,13 +17,13 @@ pPizzaArray=('$1' '$2' '$3' '$5' '$5' '$3')
 tPizzaArray=()
 total=0
 price=()
-#---------Greeting
+#========================================Greeting
 tput setaf 2
 tput bold
 printf "\n\nWelcome to PIZZA GENERATION!\n" | randtype -t 0,10000
 tput sgr0
 sleep 1s
-#------------------------------=======----------PIZZA MENU
+#======================================PIZZA MENU
 tput setaf 3
 tput bold
 printf "\nOur pizza sizes:\n" | randtype -t 0,1000
@@ -63,7 +63,7 @@ tput setaf 2
 
 printf "\n===============================\n\n"
 
-#=====================================Case Start
+#======================================Select Case Loop for choosing options
    
 while [[ $ntwo = "y" ]] || [[ $ntwo = "Y" ]] 
 do
@@ -130,7 +130,7 @@ PS3="Please select the type of pizza: "
 	esac
 done
 printf "\n "
-#=================================Another pizza
+#==========================================Another pizza
 
 function anotherp
 {
@@ -152,19 +152,19 @@ anotherp
 #tput bold
 #tput setaf 2
 done
-#==================SUMMARY
+#=============================================SUMMARY
 tput setaf 7
 tput bold
 printf "=======================\nOrder Summary\n=======================\n"
 for s in ${!tPizzaArray[*]}
-do
-printf "$(($s+1)). ${tPizzaArray[$s]} - ${tSizeArray[$s]}\n"
+   do
+	printf "$(($s+1)). ${tPizzaArray[$s]} - ${tSizeArray[$s]}\n"
 done
-printf "=======================\nTOTAL\n=======================\n"
+	printf "=======================\nTOTAL\n=======================\n"
 for n in ${price[@]}
-do
- (( total += n ))
-done
+  do
+ 	(( total += n ))
+ done
 function tax
 {
 T=.07
@@ -174,6 +174,6 @@ COMPLETE=$(echo "$total+$TAX"|bc)
 }
 
 
-echo "Your subtotal is" '$'"$total"
+echo "Your subtotal is:" '$'"$total"
 echo "-------------Tax: %7"
 tax 
