@@ -13,8 +13,13 @@ tput sgr0
 pizzaArray=("Cheese" "Pepperoni" "Hawaiian" "Veggie" "Vegan" "MeatLovers")
 sizeArray=("Extra Large" "Large" "Medium" "Small")
 priceArray=('$15.99' '$13.99' '$10.99' '$8.99')
+<<<<<<< HEAD
 tPizzaArray=()
 tSizeArray=()
+=======
+tPizzaArray=$($PS3)
+counter=0
+>>>>>>> 76695d3fe2856ab497a2c352fbe8fda06ffc5335
 #---------Greeting
 tput setaf 2
 tput bold
@@ -61,7 +66,12 @@ PS3="Please select your size:  "
 	"Small")
 		break;;
 		*)
+<<<<<<< HEAD
 	esac
+=======
+		printf "Sorry, what was that again?\n\n "
+       esac
+>>>>>>> 76695d3fe2856ab497a2c352fbe8fda06ffc5335
 done
 printf "Sorry, what was that again?\n\n"
 printf "\nChoose your style:\n"
@@ -82,6 +92,10 @@ PS3="Please select the type of pizza:"
         "Meat Lovers")
                 break;;
         	'*') printf "Sorry, what was that again?\n"
+<<<<<<< HEAD
+=======
+esac
+>>>>>>> 76695d3fe2856ab497a2c352fbe8fda06ffc5335
 
 	esac
 done
@@ -102,9 +116,9 @@ done
 tput setaf 7
 tput bold
 printf "==================\nOrder\n==================\n"
-for s in ${!userSize[*]}
+for s in ${!tPizzaArray[*]}
 do
-printf "$(($s+1)). ${userSize[$s]} - ${userStyle[$s]}\n"
+printf "$(($s+1)). ${size[$s]} - ${style[$s]}\n"
 done
 printf "=================\nHave a good day!\n=================\n"
 
