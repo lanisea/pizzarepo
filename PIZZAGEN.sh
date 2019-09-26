@@ -170,7 +170,7 @@ function tax
 T=.07
 TAX=$( echo "$total*$T"|bc)
 COMPLETE=$(echo "$total+$TAX"|bc)
-   echo "---------Total: $"$COMPLETE""
+   (echo "---------Total:" '$'"$COMPLETE")
 }
 
 
