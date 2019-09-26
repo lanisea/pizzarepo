@@ -69,7 +69,7 @@ tput setaf 1
 while [[ $ntwo = "y" ]] || [[ $ntwo = "Y" ]] 
 do
  printf "\nChoose your size:\n"
-PS3="What size pizza do you want? "
+PS3="What size pizza do you want? "   #PS3(Prompt String 3) is basically a read prompt
   select size in "${sizeArray[@]}"     #<--------------select is a loop for options
    do				       #<----------case is used to run a command based on pattern matching
        case $size in
