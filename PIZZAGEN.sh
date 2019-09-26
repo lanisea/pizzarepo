@@ -90,7 +90,9 @@ PS3="What size Pizza do you want? "
 		tPizzaArray+=('Small')
 		break;;
 	      *)
-		printf "\nSorry, what was that again?\n"
+		echo "------------"
+		echo "Please choose an option from the list!"
+		echo "------------"
 
 esac
 done
@@ -126,7 +128,9 @@ PS3="Please select the type of pizza: "
 		break;;
 
         	*) 
-		printf "Sorry, what was that again?\n"
+		echo "------------"
+		echo "Please choose an option from the list!"
+		echo "------------"
 
 	esac
 done
@@ -143,7 +147,9 @@ ntwo="n";;
    [yY]*)
 	;;
        *)
-      echo "Please enter y or n!"
+	echo "-----"
+	echo "Press y or n!"
+	echo "----"
 anotherp;;
 
 esac
@@ -178,4 +184,7 @@ COMPLETE=$(echo "$total+$TAX"|bc)
 
 echo "Your subtotal is:" '$'"$total"
 echo "-------------Tax: %7"
-tax 
+tax
+echo ""
+read -p "<Press enter to exit> " 
+reset 
