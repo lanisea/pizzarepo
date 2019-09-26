@@ -9,7 +9,7 @@ cat LOGO.txt | randtype -t 0,1000  #<--------randtype displays line as self typi
 sleep 1s   #<------------Delays next section by 1 second
 tput sgr0 #<------------turns off all text formatting after this section#
 
-#============================ARRAYS
+#==========================================ARRAYS
 pizzaArray=("Cheese" "Pepperoni" "Hawaiian" "Veggie" "Vegan" "MeatLovers")
 sizeArray=("Extra Large" "Large" "Medium" "Small")
 psizeArray=('$15' '$13' '$10' '$8')
@@ -17,13 +17,13 @@ pPizzaArray=('$1' '$2' '$3' '$5' '$5' '$3')
 tPizzaArray=()
 total=0
 price=()
-#========================================Greeting
+#========================================GREETING
 tput setaf 2
 tput bold
 printf "\n\nWelcome to PIZZA GENERATION!\n" | randtype -t 0,10000
 tput sgr0
 sleep 1s
-#======================================PIZZA MENU
+#======================================CALLING THE PIZZA MENU ARRAYS
 tput setaf 3
 tput bold
 printf "\nOur pizza sizes:\n" | randtype -t 0,1000
@@ -37,7 +37,7 @@ do
 printf "$(($p +1)). ${pizzaArray[$p]}-${pPizzaArray[$p]}\n" | randtype -t 0,1000
 done
 
-#=================================================Starting off
+#==============================================PLACING THE ORDER PROMPT
 tput setaf 6
 
 function yesno #------Function for placing order 
@@ -65,13 +65,13 @@ tput setaf 1
 
 
 #======================================Select Case Loop for choosing options
-   
+
 while [[ $ntwo = "y" ]] || [[ $ntwo = "Y" ]] 
 do
  printf "\nChoose your size:\n"
 PS3="What size Pizza do you want? "
-  select size in "${sizeArray[@]}" #select is a loop for options
-   do					#case is used to run a command based on pattern matching
+  select size in "${sizeArray[@]}"     #<--------------select is a loop for options
+   do				       #<----------case is used to run a command based on pattern matching
        case $size in
         "Extra Large")
 		price+="15 "
@@ -96,7 +96,7 @@ PS3="What size Pizza do you want? "
 
 esac
 done
-
+#===============================================================
 printf "\nChoose your style:\n"
 PS3="Please select the type of pizza: "
      select style in "${pizzaArray[@]}"
@@ -135,7 +135,7 @@ PS3="Please select the type of pizza: "
 	esac
 done
 printf "\n "
-#==========================================Another pizza
+#=======================================Function  
 
 function anotherp
 {
@@ -173,6 +173,7 @@ for n in ${price[@]}
   do
  	(( total += n ))
  done
+#============================TAX FUNCTION
 function tax
 {
 T=.07
@@ -180,8 +181,7 @@ TAX=$( echo "$total*$T"|bc)
 COMPLETE=$(echo "$total+$TAX"|bc)
    (echo "---------Total:" '$'"$COMPLETE")
 }
-
-
+#============================
 echo "Your subtotal is:" '$'"$total"
 echo "-------------Tax: %7"
 tax
