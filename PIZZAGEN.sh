@@ -1,15 +1,15 @@
 #!/bin/bash
 
-#------------TITLE LOGO
+#=======================TITLE LOGO
 clear
-tput setaf 6
-tput setab 1
-tput bold
-cat LOGO.txt | randtype -t 0,1000
-sleep 1s
-tput sgr0
+tput setaf 6 #<------Sets font color#
+tput setab 1 #<------Sets text background color#
+tput bold    #<-----------Sets the text to bold#
+cat LOGO.txt | randtype -t 0,1000  #<--------randtype displays line as self typing#
+sleep 1s   #<------------Delays next section by 1 second
+tput sgr0 #<------------turns off all text formatting after this section#
 
-#------ARRAYS
+#============================ARRAYS
 pizzaArray=("Cheese" "Pepperoni" "Hawaiian" "Veggie" "Vegan" "MeatLovers")
 sizeArray=("Extra Large" "Large" "Medium" "Small")
 psizeArray=('$15' '$13' '$10' '$8')
