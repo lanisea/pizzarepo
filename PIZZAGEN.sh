@@ -18,7 +18,7 @@ tPizzaArray=()
 total=0
 price=()
 #========================================GREETING
-tput setaf 2
+tput setaf 4
 tput bold
 printf "\n\nWelcome to PIZZA GENERATION!\n" | randtype -t 0,10000
 tput sgr0
@@ -59,11 +59,9 @@ esac
 }
 yesno
 
+
 tput bold
-tput setaf 1
-
-
-
+tput setaf 2
 #======================================Select Case Loop for choosing options
 
 while [[ $ntwo = "y" ]] || [[ $ntwo = "Y" ]] 
